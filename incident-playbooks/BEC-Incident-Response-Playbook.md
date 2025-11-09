@@ -9,14 +9,14 @@ Standardize detection, triage, containment, and recovery for BEC (invoice fraud,
 
 ## Visual: Attack Flow Overview
 
-\```mermaid
+```mermaid
 flowchart LR
     A[Attacker] -->|Phishing or OAuth Consent| B[User Mailbox]
     B -->|Credential Theft| C[Cloud Email Access]
     C -->|Inbox Rule / Forwarding / OAuth App| D[Persistence]
     D -->|Fake Invoices / Bank Changes| E[Finance / AP]
     E -->|Funds Sent| F[Attacker Account]
-\```
+```
 
 ## Severity & Timing
 
