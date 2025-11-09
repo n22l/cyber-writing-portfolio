@@ -1,0 +1,17 @@
+name: Lint (Vale)
+
+on:
+  pull_request:
+    paths: ["**/*.md"]
+
+jobs:
+  vale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Vale
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/errata-ai/vale/master/install.sh | sh
+          echo "$HOME/.vale/bin" >> $GITHUB_PATH
+      - name: Run Vale
+        run: vale .
