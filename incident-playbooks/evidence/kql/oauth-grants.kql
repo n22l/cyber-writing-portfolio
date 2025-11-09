@@ -1,0 +1,8 @@
+// Detect newly granted OAuth consents and risky applications
+CloudAppEvents
+| where Application == "Office 365"
+| where ActionType in ("Add service principal", "Consent to application")
+| extend AppName = tostring(AppDisplayName)
+| extend Permissions = tostring(AdditionalDetails)
+| project TimeGenerated, AccountDisplayName, AppName, Permissions, ActionType
+| order by TimeGenerated desc
