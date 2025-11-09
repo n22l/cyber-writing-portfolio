@@ -3,114 +3,174 @@
 ## Purpose
 Standardize detection, triage, containment, and recovery for BEC (invoice fraud, payroll diversion, vendor spoofing).
 
-> **Context:** BEC attacks accounted for over $2.9 billion in adjusted losses in 2023 (FBI IC3). They typically exploit social engineering and stolen credentials rather than malware.
+> **Context:** BEC attacks accounted for over $2.9 billion in adjusted losses in 2023 (FBI IC3). They typically abuse valid accounts and social engineering, not malware.
 
 ---
 
 ## Visual: Attack Flow Overview
+
 ```mermaid
 flowchart LR
     A[Attacker] -->|Phishing or OAuth Consent| B[User Mailbox]
     B -->|Credential Theft| C[Cloud Email Access]
-    C -->|Create Inbox Rules / OAuth Token| D[Persistence]
-    D -->|Invoice Fraud / Payment Diversion| E[Finance Dept]
-    E -->|Funds Transferred| F[Attacker Account]
+    C -->|Inbox Rule / Forwarding / OAuth App| D[Persistence]
+    D -->|Fake Invoices / Bank Changes| E[Finance / AP]
+    E -->|Funds Sent| F[Attacker Account]
 Severity & Timing
 Classification	Default	MTTD Target	MTTR Target
-Impact	High	< 1 hour	< 24 hours
+BEC Incident	High	< 1 hour	< 24 hours
 Roles (RACI)
 Role	Responsibility
-IR Lead (R)	Coordinate investigation, document findings
-Email Admin (R)	Pull logs, disable forwarding/OAuth, reset creds
-Finance (A)	Freeze transactions, verify vendor bank changes
-Legal (C)	Evaluate disclosure obligations
-Comms (C)	Prepare internal/external updates
-Exec Sponsor (I)	Approve notifications and external comms
-Detection Signals (Examples from M365 Defender & Sentinel)
-Indicator Type	Real-World Example	Data Source
-Inbox rules	Rule created: “Forward all to externaldomain.com”	OfficeActivity logs
-OAuth grants	User consented to "InvoicePDFViewer" app	CloudAppEvents
-Impossible travel	Login from New York → Lagos in 20 min	SigninLogs
-Mailbox forwarding	Automatic forwarding enabled	Exchange Online settings
-Vendor payment change	Email requesting new bank details	Finance workflow
-Triage — 30-Minute Checklist
+IR Lead (R)	Coordinate technical response and documentation
+Email Admin (R)	Logs, rules, OAuth apps, mailbox snapshots
+Finance (A)	Freeze payments, validate bank changes
+Legal (C)	Assess notification, regulatory obligations
+Comms (C)	Internal/external messaging
+Exec Sponsor (I)	Approve major comms and risk decisions
+Detection Signals
 
- Freeze pending payment changes
+Key indicators (typically from Microsoft 365 / Entra ID / Defender / Sentinel):
 
- Snapshot affected mailboxes (before remediation)
+New inbox rules that forward or delete messages to/from finance or vendors
 
- Identify affected identities, devices, and apps
+New OAuth application grants with Mail.Read, Mail.ReadWrite, or offline_access
 
- Verify financial context with AP/Finance
+Sign-ins from unusual countries / impossible travel patterns
 
- Determine if exfiltration occurred
+Vendor or internal emails requesting urgent bank account changes
 
-Screenshot Example:
+Multiple failed logins followed by successful sign-in from risky IP
 
+These are backed by KQL examples in:
 
-M365 Defender alert timeline showing suspicious OAuth consent and inbox-rule creation within minutes.
+incident-playbooks/evidence/kql/inbox-rules.kql
+
+incident-playbooks/evidence/kql/oauth-grants.kql
+
+Triage — First 30 Minutes
+
+ Freeze pending wire/ACH or bank detail changes related to suspected accounts
+
+ Snapshot affected mailboxes (before making changes)
+
+ Identify affected accounts, rules, OAuth apps, and devices
+
+ Confirm with Finance/AP which payments, vendors, or invoices are in scope
+
+ Determine if any funds have already left (and to where)
+
+Use screenshots or exports from your email/security portal and attach them to the incident record.
 
 Containment & Eradication
 
-Account actions: reset passwords, revoke tokens, remove malicious OAuth apps, enforce MFA.
+Accounts
 
-Mail hygiene: delete forwarding rules, purge phishing lures, audit transport rules.
+Reset passwords for affected users
 
-Finance controls: freeze disbursements, verify vendor banking details out-of-band.
+Revoke all active sessions and refresh tokens
 
-Evidence capture: export message traces and audit logs before changes.
+Enforce MFA (phishing-resistant if available)
+
+Mailboxes
+
+Remove malicious inbox rules and forwarding to external domains
+
+Disable auto-forwarding to external addresses at org level where feasible
+
+Purge clearly malicious BEC emails from affected mailboxes
+
+OAuth & Apps
+
+Revoke suspicious OAuth app consents
+
+Implement admin approval or stricter consent policies
+
+Finance
+
+Confirm all recent and pending bank-account changes out-of-band (phone to known numbers)
+
+Flag suspect invoices and hold them
+
+Evidence
+
+Preserve logs, message traces, rule configurations, and key screenshots
 
 Recovery
 
-Re-enable accounts under monitored conditions.
+Restore normal access with enforced MFA and monitored conditions
 
-Restore legitimate rules/templates.
+Confirm no malicious rules, forwarding, or OAuth apps remain
 
-Enable continuous mailbox auditing and retention.
+Resume payments only after out-of-band verification
 
-Conduct a post-incident training session for Finance and AP teams.
+Update users on safe email/payment practices
 
-Metrics & Reporting
-Metric	Target	Source
-% mailboxes with malicious forwarding rules	0 % after remediation	OfficeActivity
-MTTD (Mean Time to Detect)	< 1 hour	SOC alert logs
-MTTR (Mean Time to Recover)	< 24 hours	IR ticket data
-Amount saved via holds	Quantify $ protected	Finance
-Communications Templates
+Metrics
 
-See /incident-playbooks/evidence/comms-templates/:
+Track these for reporting and tuning:
 
-internal-update.md – succinct, no-blame status memo.
+MTTD: time from first suspicious signal/report to initial triage start
 
-vendor-notice.md – external notice with verification steps and fraud-report link.
+MTTR: time from detection to containment (accounts locked, payments frozen)
+
+% of BEC cases with forwarding rules/OAuth abuse
+
+$ prevented or recovered due to timely holds and verification
+
+Communication Templates
+
+See supporting templates in:
+
+incident-playbooks/evidence/comms-templates/internal-update.md
+
+incident-playbooks/evidence/comms-templates/vendor-notice.md
+
+These provide:
+
+Clear, neutral language (no premature admission of liability)
+
+Explicit verification steps for payment-instruction changes
 
 Controls Crosswalk
-Framework	Relevant Sections	Example Control Mapping
-NIST CSF 2.0	RESPOND-RS.MI, RS.CO, RECOVER-RC.CO	Incident management, communication, and recovery coordination
-NIST SP 800-61 r3	§3.3 (Containment), §3.4 (Eradication & Recovery)	Playbook phases align to NIST lifecycle
-CIS Microsoft 365 Foundations	1.1, 1.2, 2.4, 3.2 (Email protections)	MFA enforcement, disable auto-forwarding
-ISO/IEC 27035-1:2023	6.2–6.4 (Response & Lessons Learned)	Aligns to post-incident review and improvement
-MITRE ATT&CK	T1078 (Valid Accounts), T1114 (Email Collection), T1566 (Phishing)	Adversary technique references for detections
-Real-World Example
+Framework	Relevant Areas	How This Playbook Aligns
+NIST CSF 2.0	ID, PR, DE, RS, RC	Detection, response, and recovery activities
+NIST SP 800-61 r3	Incident handling life cycle	Triage, containment, eradication, recovery phases
+CIS M365	Email & account security controls	MFA, disabling external forwarding, logging
+ISO/IEC 27035-1	Incident management process	Structured response and lessons learned
+MITRE ATT&CK	T1566, T1078, T1114, T1098, T1110	Phishing, valid accounts, email collection, etc.
+Real-World Example (Sanitized)
 
-Case: Vendor Invoice Diversion
+Scenario:
+AP mailbox compromised via OAuth consent. Attacker:
 
-Attacker compromised an AP clerk via OAuth consent.
+Creates inbox rule: move all messages with subject containing "Invoice" to a hidden folder.
 
-Created inbox rule to hide vendor replies.
+Sends updated banking details to a key customer.
 
-Sent modified invoice PDF with new routing number.
+Attempts to reroute a $180,000 payment.
 
-Finance flagged mismatch → IR team confirmed rule and revoked app consent.
+Response using this playbook:
 
-Loss prevented: $180,000 wire intercepted before execution.
+Finance flags unusual request → IR freeze payments
 
-Post-mortem: add app consent policy and enforce verified callback for bank changes.
+Email Admin finds malicious rule + rogue OAuth app
+
+Sessions revoked, app removed, lures purged
+
+Customer contacted via known phone number: payment corrected
+
+Post-incident: enforce stricter app consent and bank-change verification
+
+Visual: Incident Lifecycle
+flowchart TD
+  D[Detect] --> T[Triage]
+  T --> C[Containment]
+  C --> E[Eradication]
+  E --> R[Recovery]
+  R --> L[Lessons Learned]
 
 Fact-Check Log
 Date	Claim	Source
-2025-11-08	BEC losses exceeded $2.9 B in 2023	FBI IC3 2023 Report
-2025-11-08	OAuth indicators found in CloudAppEvents	Microsoft Learn: Detect OAuth Abuse
-2025-11-08	NIST CSF 2.0 functions	NIST CSF 2.0 (2024 draft)
-2025-11-08	CIS M365 controls 1.1–3.2	Center for Internet Security Benchmarks
-
+2025-11-08	BEC losses > $2.9B in 2023	FBI IC3 2023 Report
+2025-11-08	OAuth/BEC patterns via CloudAppEvents etc	Microsoft 365 / Defender docs
+2025-11-08	Framework mappings above	NIST CSF, NIST 800-61, CIS M365
