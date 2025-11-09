@@ -19,10 +19,12 @@ flowchart LR
 
 
 
+
 ##Severity & Timing##
 | Classification | Default | MTTD Target | MTTR Target |
 | -------------- | ------- | ----------- | ----------- |
 | BEC Incident   | High    | < 1 hour    | < 24 hours  |
+
 
 ##Roles (RACI)##
 | Role                 | Responsibility                                  |
