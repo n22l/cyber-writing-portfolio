@@ -3,40 +3,114 @@
 ## Purpose
 Standardize detection, triage, containment, and recovery for BEC (invoice fraud, payroll diversion, vendor spoofing).
 
-## Severity & Timing
-- **Default severity:** High
-- **Targets:** MTTD < 1h from report; MTTR < 24h to containment
+> **Context:** BEC attacks accounted for over $2.9 billion in adjusted losses in 2023 (FBI IC3). They typically exploit social engineering and stolen credentials rather than malware.
 
-## Roles (RACI)
-IR Lead (R) • Email Admin (R) • Finance (A) • Legal (C) • Comms (C) • Exec Sponsor (I)
+---
 
-## Detection Signals
-Suspicious forwarding rules, OAuth grants, impossible travel, payee changes, vendor bank updates.
+## Visual: Attack Flow Overview
+```mermaid
+flowchart LR
+    A[Attacker] -->|Phishing or OAuth Consent| B[User Mailbox]
+    B -->|Credential Theft| C[Cloud Email Access]
+    C -->|Create Inbox Rules / OAuth Token| D[Persistence]
+    D -->|Invoice Fraud / Payment Diversion| E[Finance Dept]
+    E -->|Funds Transferred| F[Attacker Account]
+Severity & Timing
+Classification	Default	MTTD Target	MTTR Target
+Impact	High	< 1 hour	< 24 hours
+Roles (RACI)
+Role	Responsibility
+IR Lead (R)	Coordinate investigation, document findings
+Email Admin (R)	Pull logs, disable forwarding/OAuth, reset creds
+Finance (A)	Freeze transactions, verify vendor bank changes
+Legal (C)	Evaluate disclosure obligations
+Comms (C)	Prepare internal/external updates
+Exec Sponsor (I)	Approve notifications and external comms
+Detection Signals (Examples from M365 Defender & Sentinel)
+Indicator Type	Real-World Example	Data Source
+Inbox rules	Rule created: “Forward all to externaldomain.com”	OfficeActivity logs
+OAuth grants	User consented to "InvoicePDFViewer" app	CloudAppEvents
+Impossible travel	Login from New York → Lagos in 20 min	SigninLogs
+Mailbox forwarding	Automatic forwarding enabled	Exchange Online settings
+Vendor payment change	Email requesting new bank details	Finance workflow
+Triage — 30-Minute Checklist
 
-## Triage — 30-minute checklist
-- [ ] Freeze payment changes; hold wire/ACH in queue
-- [ ] Snapshot mailboxes
-- [ ] Identify affected identities, apps, rules, devices
-- [ ] Confirm business context with Finance/AP
+ Freeze pending payment changes
 
-## Containment & Eradication
-1. Reset credentials; revoke sessions/tokens; remove OAuth grants; enforce MFA; purge malicious rules
-2. Remove external auto-forwarding; search/purge lures; audit transport rules
-3. Out-of-band verify vendor bank changes; flag suspect invoices
+ Snapshot affected mailboxes (before remediation)
 
-## Recovery
-Re-enable access under monitored conditions; restore safe rules; ensure mailbox auditing
+ Identify affected identities, devices, and apps
 
-## Metrics
-% compromised mailboxes with forwarding rules; $ protected by payment holds; MTTD/MTTR
+ Verify financial context with AP/Finance
 
-## Communication Templates
-See Evidence Pack (internal status + vendor/customer notice)
+ Determine if exfiltration occurred
 
-## Controls Crosswalk
-NIST CSF RESPOND/RECOVER; CIS M365 email protections
+Screenshot Example:
 
-## Fact-check log
-| Date | Claim | Source |
-|---|---|---|
-| YYYY-MM-DD | OAuth grant indicators | <link> |
+
+M365 Defender alert timeline showing suspicious OAuth consent and inbox-rule creation within minutes.
+
+Containment & Eradication
+
+Account actions: reset passwords, revoke tokens, remove malicious OAuth apps, enforce MFA.
+
+Mail hygiene: delete forwarding rules, purge phishing lures, audit transport rules.
+
+Finance controls: freeze disbursements, verify vendor banking details out-of-band.
+
+Evidence capture: export message traces and audit logs before changes.
+
+Recovery
+
+Re-enable accounts under monitored conditions.
+
+Restore legitimate rules/templates.
+
+Enable continuous mailbox auditing and retention.
+
+Conduct a post-incident training session for Finance and AP teams.
+
+Metrics & Reporting
+Metric	Target	Source
+% mailboxes with malicious forwarding rules	0 % after remediation	OfficeActivity
+MTTD (Mean Time to Detect)	< 1 hour	SOC alert logs
+MTTR (Mean Time to Recover)	< 24 hours	IR ticket data
+Amount saved via holds	Quantify $ protected	Finance
+Communications Templates
+
+See /incident-playbooks/evidence/comms-templates/:
+
+internal-update.md – succinct, no-blame status memo.
+
+vendor-notice.md – external notice with verification steps and fraud-report link.
+
+Controls Crosswalk
+Framework	Relevant Sections	Example Control Mapping
+NIST CSF 2.0	RESPOND-RS.MI, RS.CO, RECOVER-RC.CO	Incident management, communication, and recovery coordination
+NIST SP 800-61 r3	§3.3 (Containment), §3.4 (Eradication & Recovery)	Playbook phases align to NIST lifecycle
+CIS Microsoft 365 Foundations	1.1, 1.2, 2.4, 3.2 (Email protections)	MFA enforcement, disable auto-forwarding
+ISO/IEC 27035-1:2023	6.2–6.4 (Response & Lessons Learned)	Aligns to post-incident review and improvement
+MITRE ATT&CK	T1078 (Valid Accounts), T1114 (Email Collection), T1566 (Phishing)	Adversary technique references for detections
+Real-World Example
+
+Case: Vendor Invoice Diversion
+
+Attacker compromised an AP clerk via OAuth consent.
+
+Created inbox rule to hide vendor replies.
+
+Sent modified invoice PDF with new routing number.
+
+Finance flagged mismatch → IR team confirmed rule and revoked app consent.
+
+Loss prevented: $180,000 wire intercepted before execution.
+
+Post-mortem: add app consent policy and enforce verified callback for bank changes.
+
+Fact-Check Log
+Date	Claim	Source
+2025-11-08	BEC losses exceeded $2.9 B in 2023	FBI IC3 2023 Report
+2025-11-08	OAuth indicators found in CloudAppEvents	Microsoft Learn: Detect OAuth Abuse
+2025-11-08	NIST CSF 2.0 functions	NIST CSF 2.0 (2024 draft)
+2025-11-08	CIS M365 controls 1.1–3.2	Center for Internet Security Benchmarks
+
