@@ -170,13 +170,16 @@ Customer verified by phone → transfer blocked
 Policy update: new consent review workflow
 
 
-Visual: Incident Lifecycle
+## Visual: Incident Lifecycle
+
+```mermaid
 flowchart TD
   D[Detect] --> T[Triage]
   T --> C[Containment]
   C --> E[Eradication]
   E --> R[Recovery]
   R --> L[Lessons Learned]
+```
 
 __Fact-Check Log__
 | Date       | Claim                                          | Source                               |
