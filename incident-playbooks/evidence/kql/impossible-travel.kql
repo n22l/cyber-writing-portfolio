@@ -1,0 +1,13 @@
+// Detect impossible travel sign-ins (same user from distant locations in short time)
+SigninLogs
+| project TimeGenerated, UserPrincipalName, IPAddress,
+         Country = tostring(LocationDetails.countryOrRegion)
+| order by UserPrincipalName asc, TimeGenerated asc
+| serialize
+| extend PrevUser = prev(UserPrincipalName),
+         PrevTime = prev(TimeGenerated),
+         PrevCountry = prev(Country)
+| where PrevUser == UserPrincipalName
+| extend MinutesBetween = datetime_diff('minute', TimeGenerated, PrevTime)
+| where PrevCountry != Country and MinutesBetween < 120
+| project UserPrincipalName, PrevCountry, Country, MinutesBetween, TimeGenerated
