@@ -135,13 +135,16 @@ Preserve message traces, rule exports, and sign-in logs
 
 
 
-## __Communication Templates__
+## Communication Templates
 
-### Reference supporting templates:
+Reference supporting templates used for status updates and external communication during BEC incidents.
 
-incident-playbooks/evidence/comms-templates/internal-update.md
-incident-playbooks/evidence/comms-templates/vendor-notice.md
+| Template | Purpose | File |
+|-----------|----------|------|
+| **Internal Update** | Internal-only incident brief for leadership and affected departments; neutral and factual tone. | [internal-update.md](evidence/comms-templates/internal-update.md) |
+| **Vendor Notice** | External message instructing vendors to verify payment instructions out-of-band. | [vendor-notice.md](evidence/comms-templates/vendor-notice.md) |
 
+These templates ensure consistent, accurate communication and reduce risk of misinformation or blame during active response.
 
 
 ## __Controls Crosswalk__
