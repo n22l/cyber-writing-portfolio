@@ -57,11 +57,12 @@ The following KQL queries support this playbook and can be run directly in Micro
 
 | Query | Purpose | File |
 |--------|----------|------|
-| **Inbox Rules Detection** | Detects new or modified rules that forward or delete messages, a common BEC persistence method. | [inbox-rules.kql](../evidence/kql/inbox-rules.kql) |
-| **OAuth Grants Detection** | Identifies newly granted or suspicious OAuth app consents that may allow mailbox access. | [oauth-grants.kql](../evidence/kql/oauth-grants.kql) |
-| **Impossible Travel Detection** | (Optional) Flags anomalous sign-ins from distant geographies within short time intervals. | [impossible-travel.kql](../evidence/kql/impossible-travel.kql) |
+| **Inbox Rules Detection** | Detects new or modified rules that forward or delete messages, a common BEC persistence method. | [inbox-rules.kql](evidence/kql/inbox-rules.kql) |
+| **OAuth Grants Detection** | Identifies newly granted or suspicious OAuth app consents that may allow mailbox access. | [oauth-grants.kql](evidence/kql/oauth-grants.kql) |
+| **Impossible Travel Detection** | Flags anomalous sign-ins from distant geographies within short time intervals. | [impossible-travel.kql](evidence/kql/impossible-travel.kql) |
 
 Each query output should be exported or screenshotted as part of the **Evidence Pack** and attached to the incident record.
+
 
 ## __Triage — First 30 Minutes__
 
