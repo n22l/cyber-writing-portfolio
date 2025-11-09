@@ -1,0 +1,9 @@
+// Detect new or modified inbox rules that forward emails externally
+OfficeActivity
+| where OfficeWorkload == "Exchange"
+| where Operation in ("New-InboxRule", "Set-InboxRule", "UpdateInboxRules")
+| extend RuleName = tostring(parse_json(Parameters)[0].Value)
+| extend ForwardTo = tostring(parse_json(Parameters)[1].Value)
+| where ForwardTo has_any (".com", ".net", ".org")
+| project TimeGenerated, UserId, Operation, RuleName, ForwardTo
+| order by TimeGenerated desc
