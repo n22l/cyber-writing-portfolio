@@ -1,0 +1,4 @@
+CloudAppEvents
+| where Application == "Office 365"
+| where ActionType in ("Add service principal","Consent to application")
+| project TimeGenerated, AccountDisplayName, ActionType, AppId, AppDisplayName
