@@ -1,0 +1,4 @@
+OfficeActivity
+| where OfficeWorkload == "Exchange"
+| where Operation in ("New-InboxRule","Set-InboxRule","UpdateInboxRules")
+| project TimeGenerated, UserId, Operation, Parameters
