@@ -25,7 +25,7 @@ flowchart LR
 
 
 
-##Roles (RACI)##
+## __Roles (RACI)__
 | Role                 | Responsibility                                  |
 | -------------------- | ----------------------------------------------- |
 | **IR Lead (R)**      | Coordinate technical response and documentation |
@@ -36,7 +36,7 @@ flowchart LR
 | **Exec Sponsor (I)** | Approve major comms and risk decisions          |
 
 
-__Detection Signals__
+## __Detection Signals__
 
 Key indicators (from Microsoft 365, Entra ID, Defender, and Sentinel):
 
@@ -57,7 +57,7 @@ incident-playbooks/evidence/kql/inbox-rules.kql
 incident-playbooks/evidence/kql/oauth-grants.kql
 
 
-__Triage — First 30 Minutes__
+## __Triage — First 30 Minutes__
 
  Freeze pending wire/ACH or bank detail changes
 
@@ -70,7 +70,7 @@ __Triage — First 30 Minutes__
  Determine whether funds were transferred or halted
 
 
-__Containment & Eradication__
+## __Containment & Eradication__
 
 1. Accounts
 
@@ -105,7 +105,7 @@ Freeze and flag suspicious invoices
 Preserve message traces, rule exports, and sign-in logs
 
 
-__Recovery__
+## __Recovery__
 
 Restore user access under monitored conditions
 
@@ -117,7 +117,8 @@ Resume payment operations after verification
 
 Conduct awareness briefing with affected departments
 
-__Metrics__
+
+## __Metrics__
 | Metric                        | Description                                         | Source              |
 | ----------------------------- | --------------------------------------------------- | ------------------- |
 | **MTTD**                      | Detection time from first signal/report             | SOC alert logs      |
@@ -126,7 +127,8 @@ __Metrics__
 | **Funds Protected**           | Dollar value of prevented/recovered loss            | Finance reports     |
 
 
-__Communication Templates__
+
+## __Communication Templates__
 
 Reference supporting templates:
 
@@ -134,7 +136,8 @@ incident-playbooks/evidence/comms-templates/internal-update.md
 
 incident-playbooks/evidence/comms-templates/vendor-notice.md
 
-__Controls Crosswalk__
+
+## __Controls Crosswalk__
 | Framework                | Relevant Sections                 | Alignment                                    |
 | ------------------------ | --------------------------------- | -------------------------------------------- |
 | **NIST CSF 2.0**         | ID, PR, DE, RS, RC                | Detection → Response → Recovery              |
@@ -144,7 +147,7 @@ __Controls Crosswalk__
 | **MITRE ATT&CK**         | T1566, T1078, T1114, T1098, T1110 | Phishing, valid accounts, email exfiltration |
 
 
-__Real-World Example (Sanitized)__
+## __Real-World Example (Sanitized)__
 
 -Scenario:
 Accounts Payable mailbox compromised through OAuth consent to a fake “Invoice Viewer” app.
@@ -181,7 +184,7 @@ flowchart TD
   R --> L[Lessons Learned]
 ```
 
-__Fact-Check Log__
+## __Fact-Check Log__
 | Date       | Claim                                          | Source                               |
 | ---------- | ---------------------------------------------- | ------------------------------------ |
 | 2025-11-08 | BEC losses exceeded $2.9B in 2023              | FBI IC3 2023 Report                  |
