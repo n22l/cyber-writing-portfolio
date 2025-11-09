@@ -16,6 +16,8 @@ flowchart LR
     C -->|Inbox Rule / Forwarding / OAuth App| D[Persistence]
     D -->|Fake Invoices / Bank Changes| E[Finance / AP]
     E -->|Funds Sent| F[Attacker Account]
+
+
 Severity & Timing
 Classification	Default	MTTD Target	MTTR Target
 BEC Incident	High	< 1 hour	< 24 hours
