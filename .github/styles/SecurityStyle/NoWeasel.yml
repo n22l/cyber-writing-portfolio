@@ -1,0 +1,11 @@
+# Reject vague marketing terms
+extends: existence
+message: "Avoid weasel word: '%s'. Replace with a precise claim."
+level: warning
+ignorecase: true
+tokens:
+  - robust
+  - state-of-the-art
+  - revolutionary
+  - next-generation
+  - unparalleled
