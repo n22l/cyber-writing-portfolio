@@ -38,7 +38,7 @@ flowchart LR
 
 ## __Detection Signals__
 
-Key indicators (from Microsoft 365, Entra ID, Defender, and Sentinel):
+### Key indicators (from Microsoft 365, Entra ID, Defender, and Sentinel):
 
 New inbox rules forwarding or deleting messages related to finance/vendors
 
@@ -79,7 +79,7 @@ Each query output should be exported or screenshotted as part of the **Evidence 
 
 ## __Containment & Eradication__
 
-1. Accounts
+### 1. Accounts
 
 Reset credentials for affected users
 
@@ -87,7 +87,7 @@ Revoke sessions and refresh tokens
 
 Enforce MFA (preferably phishing-resistant)
 
-2. Mailboxes
+### 2. Mailboxes
 
 Remove malicious inbox rules and external forwarding
 
@@ -95,34 +95,34 @@ Disable organization-wide auto-forwarding if feasible
 
 Purge malicious emails and lures
 
-3. OAuth / Applications
+### 3. OAuth / Applications
 
 Revoke rogue app consents
 
 Enforce admin review for future consent
 
-4. Finance
+### 4. Finance
 
 Verify all vendor account changes via out-of-band phone calls
 
 Freeze and flag suspicious invoices
 
-5. Evidence
+### 5. Evidence
 
 Preserve message traces, rule exports, and sign-in logs
 
 
 ## __Recovery__
 
-Restore user access under monitored conditions
+-Restore user access under monitored conditions
 
-Validate mail flow and inbox rules
+-Validate mail flow and inbox rules
 
-Confirm no malicious apps or rules remain
+-Confirm no malicious apps or rules remain
 
-Resume payment operations after verification
+-Resume payment operations after verification
 
-Conduct awareness briefing with affected departments
+-Conduct awareness briefing with affected departments
 
 
 ## __Metrics__
@@ -137,11 +137,11 @@ Conduct awareness briefing with affected departments
 
 ## __Communication Templates__
 
-Reference supporting templates:
+### Reference supporting templates:
 
 incident-playbooks/evidence/comms-templates/internal-update.md
-
 incident-playbooks/evidence/comms-templates/vendor-notice.md
+
 
 
 ## __Controls Crosswalk__
@@ -156,10 +156,10 @@ incident-playbooks/evidence/comms-templates/vendor-notice.md
 
 ## __Real-World Example (Sanitized)__
 
--Scenario:
+### Scenario:
 Accounts Payable mailbox compromised through OAuth consent to a fake “Invoice Viewer” app.
 
--Attacker actions:
+### Attacker actions:
 
 Created hidden rule moving “Invoice” messages to a subfolder
 
@@ -167,7 +167,7 @@ Sent new bank details to customer
 
 Attempted a $180,000 transfer
 
--Response:
+### Response:
 
 Finance caught mismatch → IR froze payments
 
