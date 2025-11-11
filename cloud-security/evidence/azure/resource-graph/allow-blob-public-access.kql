@@ -1,0 +1,7 @@
+```kusto
+Resources
+| where type =~ "microsoft.storage/storageaccounts"
+| project name, resourceGroup, subscriptionId,
+          allowBlobPublicAccess = tostring(properties.allowBlobPublicAccess)
+| order by name asc
+```
