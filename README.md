@@ -41,11 +41,7 @@ This guide provides a structured approach to identifying, testing, and mitigatin
   - Attack Flow Diagram (Direct vs Indirect)
   - Reference Defense Architecture Flowchart
 - Framework Crosswalk:
-  - OWASP LLM Top 10 (LLM01 Prompt Injection)
-  - NIST AI Risk Management Framework (AI RMF 1.0)
-  - NIST GenAI Profile (AI 600-1)
-  - UK NCSC AI Security Guidance
-  - MITRE ATLAS Adversarial Techniques
+  - OWASP LLM Top 10 (LLM01 Prompt Injection), NIST AI Risk Management Framework (AI RMF 1.0), NIST GenAI Profile (AI 600-1), UK NCSC AI Security Guidance, MITRE ATLAS Adversarial Techniques
  
  ### 3. [Incident Response Playbook: Business Email Compromise (BEC)](incident-playbooks/BEC-Incident-Response-Playbook.md)
 
