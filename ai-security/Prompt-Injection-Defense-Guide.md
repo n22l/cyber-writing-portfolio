@@ -10,19 +10,21 @@ A practical, testable guide to prevent and detect **prompt injection** in LLM ap
 
 ## Visual: Attack Flow (Direct vs Indirect)
 
-```mermaid
+```
+mermaid
 flowchart LR
   A[Untrusted Input] -->|Direct prompt| M[LLM]
-  X[Untrusted Content Source<br/>(web/PDF/email)] -->|Indirect prompt| M
-  M -->|Tool call| T[Tool/Plugin]
-  M -->|Generated output| O[Consumer/App]
-  T -->|Data access| D[Internal/External Data]
-  O -->|Rendered| C[Client/UI]
+  X[Untrusted Content Source (web / PDF / email)] -->|Indirect prompt| M
+  M -->|Tool call| T[Tool or Plugin]
+  M -->|Generated output| O[Consumer / App]
+  T -->|Data access| D[Internal or External Data]
+  O -->|Rendered| C[Client / UI]
 
   %% Risk notes
   A -. may override system prompt .-> M
   X -. hidden instructions .-> M
-  O -. output interpreted as HTML/JS .-> C
+  O -. output interpreted as HTML or JS .-> C
+
 ```
 
 Real-World Examples (Sanitized)
