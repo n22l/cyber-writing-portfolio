@@ -121,9 +121,9 @@ flowchart TD
 ## Fact-Check Log (examples)
 | Date       | Claim                                                                          | Source                         |
 | ---------- | ------------------------------------------------------------------------------ | ------------------------------ |
-| YYYY-MM-DD | Prompt injection (direct/indirect) is a leading LLM risk                       | OWASP LLM Top 10               |
-| YYYY-MM-DD | Indirect injection via external content is hard to detect, requires boundaries | UK NCSC blog                   |
-| YYYY-MM-DD | RMF + GenAI Profile recommend red-teaming & provenance                         | NIST AI RMF 1.0, NIST AI 600-1 |
+| 2025-11-11 | Prompt injection (direct/indirect) is a leading LLM risk                       | OWASP LLM Top 10               |
+| 2025-11-11 | Indirect injection via external content is hard to detect, requires boundaries | UK NCSC blog                   |
+| 2025-11-11 | RMF + GenAI Profile recommend red-teaming & provenance                         | NIST AI RMF 1.0, NIST AI 600-1 |
 
 ## References
 
