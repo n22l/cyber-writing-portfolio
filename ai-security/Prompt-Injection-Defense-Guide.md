@@ -117,9 +117,9 @@ flowchart TD
 
 ## References
 
--OWASP GenAI: LLM01 Prompt Injection — https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+- OWASP GenAI: LLM01 Prompt Injection — https://genai.owasp.org/llmrisk/llm01-prompt-injection/
 -OWASP (archive): LLM01 Prompt Injections — https://owasp.org/www-project-top-10-for-large-language-model-applications/Archive/0_1_vulns/Prompt_Injection.html
--NIST AI RMF 1.0 — https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
--NIST AI 600-1 (GenAI Profile, 2024) — https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
--NCSC (UK): Thinking about the security of AI systems — https://www.ncsc.gov.uk/blog-post/thinking-about-security-ai-systems
--MITRE ATLAS (adversarial techniques) — https://atlas.mitre.org/
+- NIST AI RMF 1.0 — https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
+- NIST AI 600-1 (GenAI Profile, 2024) — https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+- NCSC (UK): Thinking about the security of AI systems — https://www.ncsc.gov.uk/blog-post/thinking-about-security-ai-systems
+- MITRE ATLAS (adversarial techniques) — https://atlas.mitre.org/
