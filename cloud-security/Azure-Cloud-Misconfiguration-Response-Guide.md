@@ -25,7 +25,7 @@ flowchart LR
 
 A project creates a test container and leaves public read enabled. Logs show anonymous GETs from unfamiliar IPs. After disabling public access and rotating keys, egress stops and alerts close.
 
-< Map attacker outcome to MITRE ATT&CK T1530 – [Data from Cloud Storage](https://attack.mitre.org/techniques/T1530/?utm_source=chatgpt.com). 
+> Map attacker outcome to MITRE ATT&CK T1530 – [Data from Cloud Storage](https://attack.mitre.org/techniques/T1530/?utm_source=chatgpt.com). 
 
 ## Evidence (what you can run)
 - Azure – list accounts with potential public access
@@ -36,10 +36,10 @@ A project creates a test container and leaves public read enabled. Logs show ano
   - Verify S3 Block Public Access and bucket status; check AWS Config rules.
     
 ### Artifacts in this repo (added below):
-- allow-blob-public-access.kql
-- azure-disable-public-access.sh
-- aws-public-access-block.sh
-- aws-config-rules.md
+- [allow-blob-public-access.kql](https://github.com/n22l/cyber-writing-portfolio/blob/main/cloud-security/evidence/azure/resource-graph/allow-blob-public-access.kql)
+- [azure-disable-public-access.sh](https://github.com/n22l/cyber-writing-portfolio/blob/main/cloud-security/evidence/azure/cli/azure-disable-public-access.sh)
+- [aws-public-access-block.sh](https://github.com/n22l/cyber-writing-portfolio/blob/main/cloud-security/evidence/aws/cli/aws-public-access-block.sh)
+- [aws-config-rules.md](https://github.com/n22l/cyber-writing-portfolio/blob/main/cloud-security/evidence/aws/config/aws-config-rules.md)
 
 ## Triage (first 30 minutes)
 - Snapshot current settings (Azure: account + container; AWS: account/block settings, bucket policy).
