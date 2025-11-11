@@ -46,9 +46,6 @@ This guide provides a structured approach to identifying, testing, and mitigatin
   - NIST GenAI Profile (AI 600-1)
   - UK NCSC AI Security Guidance
   - MITRE ATLAS Adversarial Techniques
-**Purpose:**  
-Standardize the documentation and validation of AI prompt-injection defenses with evidence-driven controls and red-team reproducibility. Demonstrates actionable safeguards, detection logic, and audit practices for safe deployment of LLM-integrated systems.
-
 
 > All playbooks include fact-check logs, framework mappings (NIST, CIS, MITRE), and editorial notes for reproducibility and clarity.
 
