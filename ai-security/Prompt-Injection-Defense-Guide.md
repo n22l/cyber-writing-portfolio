@@ -10,8 +10,6 @@ A practical, testable guide to prevent and detect **prompt injection** in LLM ap
 
 ## Visual: Attack Flow (Direct vs Indirect)
 
-
-
 ```mermaid
 flowchart LR
     A[Untrusted Input] -->|Direct prompt| M[LLM]
@@ -25,8 +23,8 @@ flowchart LR
     O -. output interpreted as HTML or JS .-> C
 ```
 
-
-
+---
+  
 Real-World Examples (Sanitized)
 
 1) RAG + Web Browsing
