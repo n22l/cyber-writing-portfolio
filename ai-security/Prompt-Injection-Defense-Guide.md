@@ -13,7 +13,7 @@ A practical, testable guide to prevent and detect **prompt injection** in LLM ap
 ```mermaid
 flowchart LR
     A[Untrusted Input] -->|Direct prompt| M[LLM]
-    X[Untrusted Content Source (web / PDF / email)] -->|Indirect prompt| M
+    X[Untrusted Content Source - web, PDF, email] -->|Indirect prompt| M
     M -->|Tool call| T[Tool or Plugin]
     M -->|Generated output| O[Consumer or App]
     T -->|Data access| D[Internal or External Data]
@@ -22,6 +22,7 @@ flowchart LR
     X -. hidden instructions .-> M
     O -. output interpreted as HTML or JS .-> C
 ```
+
 
 
 ---
