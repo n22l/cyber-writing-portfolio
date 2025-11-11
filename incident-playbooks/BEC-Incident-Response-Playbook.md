@@ -197,6 +197,6 @@ flowchart TD
 ## __Fact-Check Log__
 | Date       | Claim                                          | Source                               |
 | ---------- | ---------------------------------------------- | ------------------------------------ |
-| 2025-11-08 | BEC losses exceeded $2.9B in 2023              | FBI IC3 2023 Report                  |
+| 2025-11-08 | BEC losses exceeded $2.7B in 2024              | FBI IC3 2024 Report                  |
 | 2025-11-08 | OAuth indicators observable via CloudAppEvents | Microsoft Learn: Detect OAuth Abuse  |
 | 2025-11-08 | Framework mappings verified                    | NIST CSF 2.0, CIS M365, MITRE ATT&CK |
