@@ -102,8 +102,8 @@ flowchart TD
 ## Controls Crosswalk
 | Framework                         | Relevant Items                                             | This Guide’s Mapping                                  |
 | --------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
-| **OWASP LLM Top 10 (2025)**       | **LLM01 Prompt Injection**, LLM02 Insecure Output Handling | Deny-lists, output escaping, indirect injection tests |
-| **NIST AI RMF 1.0**               | **GOVERN/MAP/MEASURE/MANAGE**                              | Policies, risk mapping, evals/canaries, mitigations   |
+| **OWASP LLM Top 10 (2025)**       | LLM01 Prompt Injection, LLM02 Insecure Output Handling     | Deny-lists, output escaping, indirect injection tests |
+| **NIST AI RMF 1.0**               | GOVERN/MAP/MEASURE/MANAGE                                  | Policies, risk mapping, evals/canaries, mitigations   |
 | **NIST GenAI Profile (AI 600-1)** | Red-teaming, content provenance                            | Evidence-based tests, allowlists/provenance           |
 | **UK NCSC AI Security**           | Prompt injection difficulty; defense-in-depth              | Treat outputs as untrusted; sandbox external content  |
 | **MITRE ATLAS**                   | Prompt-injection techniques & kill-chain                   | Threat-informed tests; technique references           |
@@ -117,9 +117,9 @@ flowchart TD
 
 ## References
 
-OWASP GenAI: LLM01 Prompt Injection — https://genai.owasp.org/llmrisk/llm01-prompt-injection/
-OWASP (archive): LLM01 Prompt Injections — https://owasp.org/www-project-top-10-for-large-language-model-applications/Archive/0_1_vulns/Prompt_Injection.html
-NIST AI RMF 1.0 — https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
-NIST AI 600-1 (GenAI Profile, 2024) — https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
-NCSC (UK): Thinking about the security of AI systems — https://www.ncsc.gov.uk/blog-post/thinking-about-security-ai-systems
-MITRE ATLAS (adversarial techniques) — https://atlas.mitre.org/
+-OWASP GenAI: LLM01 Prompt Injection — https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+-OWASP (archive): LLM01 Prompt Injections — https://owasp.org/www-project-top-10-for-large-language-model-applications/Archive/0_1_vulns/Prompt_Injection.html
+-NIST AI RMF 1.0 — https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
+-NIST AI 600-1 (GenAI Profile, 2024) — https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+-NCSC (UK): Thinking about the security of AI systems — https://www.ncsc.gov.uk/blog-post/thinking-about-security-ai-systems
+-MITRE ATLAS (adversarial techniques) — https://atlas.mitre.org/
