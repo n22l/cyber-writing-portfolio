@@ -3,7 +3,7 @@
 ## Purpose
 Standardize detection, triage, containment, and recovery for BEC (invoice fraud, payroll diversion, vendor spoofing).
 
-> **Context:** BEC attacks accounted for over $2.9 billion in adjusted losses in 2023 (FBI IC3). They typically exploit valid credentials and social engineering rather than malware.
+> **Context:** BEC attacks accounted for over $2.7 billion in adjusted losses in 2024 (FBI IC3). They typically exploit valid credentials and social engineering rather than malware.
 
 ---
 
