@@ -28,4 +28,27 @@ This playbook standardizes detection, triage, containment, and recovery steps fo
   - Attack Flow Diagram
   - Incident Lifecycle Flowchart
 
+### [Prompt Injection Defense Guide](ai-security/Prompt-Injection-Defense-Guide.md)
+
+This guide provides a structured approach to identifying, testing, and mitigating **prompt injection attacks** in Large Language Model (LLM) applications, covering both direct and indirect injection scenarios. It outlines defensive architecture patterns, reproducible red-team test cases, and mappings to major AI security frameworks.
+
+**Included artifacts:**
+- **Evidence-backed test suite:**
+  - [Red-team Test Vectors](ai-security/evidence/prompt-injection/redteam-tests.json)
+  - [Test Methodology](ai-security/evidence/prompt-injection/test-methodology.md)
+  - [Results Log](ai-security/evidence/prompt-injection/results.csv)
+- **Visuals:**
+  - Attack Flow Diagram (Direct vs Indirect)
+  - Reference Defense Architecture Flowchart
+- **Framework Crosswalk:**
+  - OWASP LLM Top 10 (LLM01 Prompt Injection)
+  - NIST AI Risk Management Framework (AI RMF 1.0)
+  - NIST GenAI Profile (AI 600-1)
+  - UK NCSC AI Security Guidance
+  - MITRE ATLAS Adversarial Techniques
+**Purpose:**  
+Standardize the documentation and validation of AI prompt-injection defenses with evidence-driven controls and red-team reproducibility. Demonstrates actionable safeguards, detection logic, and audit practices for safe deployment of LLM-integrated systems.
+
+
 > All playbooks include fact-check logs, framework mappings (NIST, CIS, MITRE), and editorial notes for reproducibility and clarity.
+
