@@ -14,6 +14,7 @@ Each sample includes:
 ### 1. [Cloud Misconfiguration Response Guide (Azure + AWS appendix)](cloud-security/Azure-Cloud-Misconfiguration-Response-Guide.md)
 
 A structured guide for detecting, remediating, and preventing **cloud storage misconfigurations** across Azure and AWS. Includes detection workflows, remediation scripts, and framework mappings for verifiable cloud security controls.
+
 **Included artifacts:**
 - Evidence:
   - [Azure Resource Graph query](cloud-security/evidence/azure/resource-graph/allow-blob-public-access.kql)
@@ -32,14 +33,14 @@ A structured guide for detecting, remediating, and preventing **cloud storage mi
 This guide provides a structured approach to identifying, testing, and mitigating **prompt injection attacks** in Large Language Model (LLM) applications, covering both direct and indirect injection scenarios. It outlines defensive architecture patterns, reproducible red-team test cases, and mappings to major AI security frameworks.
 
 **Included artifacts:**
-- **Evidence-backed test suite:**
+- Evidence-backed test suite:
   - [Red-team Test Vectors](ai-security/evidence/prompt-injection/redteam-tests.json)
   - [Test Methodology](ai-security/evidence/prompt-injection/test-methodology.md)
   - [Results Log](ai-security/evidence/prompt-injection/results.csv)
-- **Visuals:**
+- Visuals:
   - Attack Flow Diagram (Direct vs Indirect)
   - Reference Defense Architecture Flowchart
-- **Framework Crosswalk:**
+- Framework Crosswalk:
   - OWASP LLM Top 10 (LLM01 Prompt Injection)
   - NIST AI Risk Management Framework (AI RMF 1.0)
   - NIST GenAI Profile (AI 600-1)
