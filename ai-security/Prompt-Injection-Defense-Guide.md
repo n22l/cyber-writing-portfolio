@@ -23,7 +23,6 @@ flowchart LR
   A -. may override system prompt .-> M
   X -. hidden instructions .-> M
   O -. output interpreted as HTML or JS .-> C
-
 ```
 
 Real-World Examples (Sanitized)
