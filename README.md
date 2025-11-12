@@ -62,7 +62,9 @@ A structured guide for detecting, remediating, and preventing **cloud storage mi
 > All playbooks include fact-check logs, framework mappings (NIST, CIS, MITRE), and editorial notes for reproducibility and clarity.
 
 ## How I Work
-- Docs-as-code: Markdown, GitHub, PR reviews, style + checklist
-- Evidence Packs: queries, scripts, test vectors, comms templates
-- Framework-aware: NIST, CIS, OWASP, MITRE, AI RMF
+- **Docs-as-code:** Markdown, GitHub, PR reviews, structured commits, and a clear [CONTRIBUTING.md](CONTRIBUTING.md) checklist.  
+- **Evidence Packs:** Queries, scripts, test vectors, and communication templates that make every document verifiable.  
+- **Framework-aware:** Mappings to NIST CSF, CIS Benchmarks, OWASP, MITRE ATT&CK, and NIST AI RMF.  
+- **Editorial discipline:** Fact-check logs, consistent terminology, and zero hype—every claim backed by a primary source.
+
 
