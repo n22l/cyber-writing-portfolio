@@ -10,7 +10,7 @@ Each sample includes:
 
 > Every document ends with verified sources and a fact-check log.
 
-## 🧩 Sample Work
+## Sample Work
 ### 1. [Incident Response Playbook: Business Email Compromise (BEC)](incident-playbooks/BEC-Incident-Response-Playbook.md)
 
 This playbook standardizes detection, triage, containment, and recovery steps for Business Email Compromise (BEC) scenarios such as invoice fraud, vendor spoofing, and payroll diversion.
